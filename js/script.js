@@ -89,6 +89,7 @@ function handleComplete(e) {
 	var bitmap = new createjs.Bitmap(img.src);
 
 	grid = new Grid(5, 5, 64, 64);
-
 	grid.fill(bitmap.clone());
+
+	stage.addChild(grid);
 }
