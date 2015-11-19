@@ -24,21 +24,9 @@ function init() {
     createjs.Ticker.addEventListener("tick", tick);
 
 	/** Image Progress Bar **/
-	var text = new createjs.Text("Loading . . .", "60px Arial", "black");
-	text.x = 100;
-	text.y = 100;
-	text.name = "loading";
-	stage.addChild(text);
-
-	var x = text.x;
-	var width = 0;
-	var y = text.y + text.getBounds().height + 5;
-	var height = 2;
-
-	var progressbar = new createjs.Shape();
-	progressbar.name = "progress";
-	progressbar.graphics.beginFill("red").drawRect(x, y, width, height);
-	stage.addChild(progressbar);
+	var loading = new Loading();
+	loading.name = "loading";
+	stage.addChild(loading);
 
 	/** Load assets into queue **/
     queue = new createjs.LoadQueue();
@@ -64,21 +52,13 @@ function handleFileLoad(q) {
 
 function handleFileProgress(e) {
     var p = e.progress;
-    var text = stage.getChildByName('loading');
-
-    var x = text.x;
-    var width = text.getBounds().width * p;
-    var y = text.y + text.getBounds().height + 5;
-    var height = 2;
-
-    var progressbar = stage.getChildByName('progress');
-    progressbar.graphics.beginFill("red").drawRect(x, y, width, height);
+    var loading = stage.getChildByName('loading');
+	loading.progress(p);
 }
 
 function handleComplete(e) {
 
-    stage.removeChild(stage.getChildByName('progress'));
-    stage.removeChild(stage.getChildByName('loading'));
+	stage.removeChild(stage.getChildByName('loading'));
 
     // keybindings
     Mousetrap.bind('d', function() {
