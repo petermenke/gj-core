@@ -23,17 +23,16 @@ p.set = function(x, y, bitmap) {
     bitmap.x = this.cellw * x;
     bitmap.y = this.cellh * y;
     var index = y * this.width + x;
-    console.log(index);
-    console.log(bitmap.x + ', ' + bitmap.y);
+    this.removeChildAt(index);
     this.addChildAt(bitmap, index);
 }
 
 p.get = function(x, y) {
-    return this.getChildAt(y * this.height + x);
+    return this.getChildAt(y * this.width + x);
 }
 
 p.remove = function(x, y) {
-    this.removeChildAt(y * this.height + x);
+    this.removeChildAt(y * this.width + x);
 }
 
 p.fill = function(bitmap) {

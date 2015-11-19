@@ -86,12 +86,9 @@ function handleComplete(e) {
     });
 
 	var img = queue.getItem('rpgTile040');
-	console.log(img);
 	var bitmap = new createjs.Bitmap(img.src);
 
 	grid = new Grid(5, 5, 64, 64);
 
 	grid.fill(bitmap.clone());
-	stage.addChild(grid);
-	//stage.addChild(bitmap);
 }
